@@ -132,8 +132,12 @@ class SortingRobot:
                     self.move_left()
                     self.swap_item()
                     self.move_right()
-            #when we hit end of list and cant move right, we go back and start over with comparing
-            while self.can_move_right() is False:
+            # when we hit end of list and cant move right, we go back and start over with comparing
+            # while self.can_move_right() is False: ## 🤬🤬🤬🤬
+            # instead of checking if moving right is false- that will only take you one space back
+            # and then can_move_right will go back to true... make it can_move_left until that turns false
+            # and start our checks again... yikes
+            while self.can_move_left():
                 self.move_left()
 
             # if nothing is swapped, the light stays off and we know everything is sorted
