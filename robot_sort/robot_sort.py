@@ -105,13 +105,45 @@ class SortingRobot:
         -if the one being held is smaller, then we just move back or to the left and put it back and then continue moving forward/right.
         - we continue this until we can no longer move right/end of list
         - lets see if this works... 
-        '''
+        '''   
     def sort(self):
         """
         Sort the robot's list.
         """
+        self.set_light_on()
+        # start
+        while self.light_is_on():
+            self.set_light_off()
+            # checking to see if it can move right
+            while self.can_move_right():
+                # pick up item and then move right
+                self.swap_item()
+                self.move_right()
+                # now we need to go and compare the items
+                # if item held is larger than one in front
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_on()
+                # if item held is smaller or same than one in front
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+            #when we hit end of list and cant move right, we go back and start over with comparing
+            while self.can_move_right() is False:
+                self.move_left()
+
+            # if nothing is swapped, the light stays off and we know everything is sorted
+
+      
+                
+             
+
         # Fill this out
-        pass
+        #pass
 
 
 
