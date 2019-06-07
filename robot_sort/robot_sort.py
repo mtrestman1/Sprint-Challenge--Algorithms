@@ -92,12 +92,27 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+        '''
+        My 2 cents for this before I start working... 
+        -the light function is a boolean determining whether swaps/changes occured  
+        -using while loop/ way to "break out" with light/boolean (thanks Brady)
+        -once in loop, we need to move right to start comparing the items.. 
+        so well need to check if we can move right first and if we can, then move, and go into the next step 
+        of comparing the items
+        - well need to compare the items, the one currently held and the one in front of robot
+        - if the one ebing held is larger, well have to swap them and then go back and put the smaller one
+        we just picked up down, and then move forward again
+        -if the one being held is smaller, then we just move back or to the left and put it back and then continue moving forward/right.
+        - we continue this until we can no longer move right/end of list
+        - lets see if this works... 
+        '''
     def sort(self):
         """
         Sort the robot's list.
         """
         # Fill this out
         pass
+
 
 
 if __name__ == "__main__":
