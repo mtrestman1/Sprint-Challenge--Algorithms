@@ -92,12 +92,63 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+        '''
+        My 2 cents for this before I start working... 
+        -the light function is a boolean determining whether swaps/changes occured  
+        -using while loop/ way to "break out" with light/boolean (thanks Brady)
+        -once in loop, we need to move right to start comparing the items.. 
+        so well need to check if we can move right first and if we can, then move, and go into the next step 
+        of comparing the items
+        - well need to compare the items, the one currently held and the one in front of robot
+        - if the one ebing held is larger, well have to swap them and then go back and put the smaller one
+        we just picked up down, and then move forward again
+        -if the one being held is smaller, then we just move back or to the left and put it back and then continue moving forward/right.
+        - we continue this until we can no longer move right/end of list
+        - lets see if this works... 
+        '''   
     def sort(self):
         """
         Sort the robot's list.
         """
+        self.set_light_on()
+        # start
+        while self.light_is_on():
+            self.set_light_off()
+            # checking to see if it can move right
+            while self.can_move_right():
+                # pick up item and then move right
+                self.swap_item()
+                self.move_right()
+                # now we need to go and compare the items
+                # if item held is larger than one in front
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_on()
+                # if item held is smaller or same than one in front
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+            # when we hit end of list and cant move right, we go back and start over with comparing
+            # while self.can_move_right() is False: ## 🤬🤬🤬🤬
+            # instead of checking if moving right is false- that will only take you one space back
+            # and then can_move_right will go back to true... make it can_move_left until that turns false
+            # and start our checks again... yikes
+            while self.can_move_left():
+                self.move_left()
+
+            # if nothing is swapped, the light stays off and we know everything is sorted
+
+      
+                
+             
+
         # Fill this out
-        pass
+        #pass
+
 
 
 if __name__ == "__main__":
